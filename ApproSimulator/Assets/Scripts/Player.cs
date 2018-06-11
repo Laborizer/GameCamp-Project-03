@@ -5,25 +5,26 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
-    private Rigidbody2D rb;
     private Boolean facingRight;
+    private float delta;
 
     public float speed;
+    public float drunkness;
+    public float amplitude;
 
     // Use this for initialization
     void Start () {
-        rb = GetComponent<Rigidbody2D>();
     }
 	
 	// Update is called once per frame
-	void Update () {
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
-        Move(moveHorizontal,moveVertical);
+	void FixedUpdate () {
+        Move();
 	}
 
-    private void Move(float moveHorizontal, float moveVertical)
+    private void Move()
     {
+        delta = Time.deltaTime;
+       
         if (Input.GetKey(KeyCode.D))
         {
             if (!facingRight)
@@ -31,7 +32,7 @@ public class Player : MonoBehaviour {
                 transform.Rotate(new Vector3(0, 180, 0));
                 facingRight = true;
             }
-            transform.position += Vector3.right * speed;
+            transform.position += Vector3.right * delta * (Mathf.Sin(drunkness) * amplitude);
         }
 
         if (Input.GetKey(KeyCode.A))
@@ -41,17 +42,17 @@ public class Player : MonoBehaviour {
                 transform.Rotate(new Vector3(0, -180, 0));
                 facingRight = false;
             }
-            transform.position -= Vector3.right * speed;
+            transform.position -= Vector3.right * delta * (Mathf.Sin(drunkness) * amplitude);
         }
 
         if (Input.GetKey(KeyCode.W))
         {
-            transform.position += Vector3.up * speed;
+            transform.position += Vector3.up * delta * (Mathf.Sin(drunkness) * amplitude);
         }
 
         if (Input.GetKey(KeyCode.S))
         {
-            transform.position += Vector3.down * speed;
+            transform.position += Vector3.down * delta * (Mathf.Sin(drunkness) * amplitude);
         }
     }
 }

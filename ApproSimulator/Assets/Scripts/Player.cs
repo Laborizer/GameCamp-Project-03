@@ -8,22 +8,22 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private Boolean facingRight;
     private float delta;
-    private float timer;
-    private float randomPushVer;
-    private float randomPushHor;
 
-    //public float speed;
-    //public float drunkness;
-    //public float amplitude;
+    public float randomPushVer;
+    public float randomPushHor;
 
-    // Use this for initialization
+    public float standingRandomPushVer;
+    public float standingRandomPushHor;
+
+    public int nextUpdate = 1;
+
+    public float walkSpeed;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        InvokeRepeating("DrunkAutoMove", 0.5f,0.5f);
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         Move();
@@ -32,6 +32,11 @@ public class Player : MonoBehaviour
     private void Move()
     {
         delta = Time.deltaTime;
+        if (Time.time >= nextUpdate)
+        {
+            DrunkAutoMove();
+            nextUpdate = Mathf.FloorToInt(Time.time) + 1;
+        }
 
         if (Input.GetKey(KeyCode.D))
         {
@@ -40,7 +45,8 @@ public class Player : MonoBehaviour
                 transform.Rotate(new Vector3(0, 180, 0));
                 facingRight = true;
             }
-            transform.position += Vector3.right * delta;
+            //transform.position += Vector3.right * delta;
+            rb.MovePosition(new Vector2(transform.position.x + walkSpeed + (randomPushVer/2),transform.position.y + (randomPushHor/2)));
         }
 
         if (Input.GetKey(KeyCode.A))
@@ -50,24 +56,29 @@ public class Player : MonoBehaviour
                 transform.Rotate(new Vector3(0, -180, 0));
                 facingRight = false;
             }
-            transform.position -= Vector3.right * delta;
+            //transform.position -= Vector3.right * delta;
+            rb.MovePosition(new Vector2(transform.position.x - walkSpeed + (randomPushVer / 2), transform.position.y + (randomPushHor / 2)));
         }
 
         if (Input.GetKey(KeyCode.W))
         {
-            transform.position += Vector3.up * delta;
+            //transform.position += Vector3.up * delta;
+            rb.MovePosition(new Vector2(transform.position.x + (randomPushVer / 2), transform.position.y + walkSpeed + (randomPushHor / 2)));
         }
 
         if (Input.GetKey(KeyCode.S))
         {
-            transform.position += Vector3.down * delta;
+            //transform.position += Vector3.down * delta;
+            rb.MovePosition(new Vector2(transform.position.x + (randomPushVer / 2), transform.position.y - walkSpeed + (randomPushHor / 2)));
         }
     }
 
     private void DrunkAutoMove()
     {
-        randomPushVer = UnityEngine.Random.Range(-5f, 5f);
-        randomPushHor = UnityEngine.Random.Range(-5f, 5f);
-        rb.AddForce(new Vector2(randomPushHor, randomPushVer));
+        randomPushVer = UnityEngine.Random.Range(-0.01f, 0.01f);
+        randomPushHor = UnityEngine.Random.Range(-0.01f, 0.01f);
+        standingRandomPushHor = UnityEngine.Random.Range(-5f, 5f);
+        standingRandomPushVer = UnityEngine.Random.Range(-5f, 5f);
+        rb.AddForce(new Vector2(standingRandomPushVer, standingRandomPushHor));
     }
 }

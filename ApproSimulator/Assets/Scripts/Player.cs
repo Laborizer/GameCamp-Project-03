@@ -8,10 +8,10 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private Boolean facingRight;
     private float delta;
-    private float randomPushVer;
-    private float randomPushHor;
-    private float standingRandomPushVer;
-    private float standingRandomPushHor;
+    public float randomPushVer;
+    public float randomPushHor;
+    public float standingRandomPushVer;
+    public float standingRandomPushHor;
     private int nextUpdate = 1;
 
     public Boolean drunk;
@@ -36,6 +36,9 @@ public class Player : MonoBehaviour
         {
             DrunkAutoMove();
             nextUpdate = Mathf.FloorToInt(Time.time) + 1;
+        } else if(!drunk)
+        {
+            DrunkReset();
         }
 
         if (Input.GetKey(KeyCode.D))
@@ -71,6 +74,15 @@ public class Player : MonoBehaviour
             //transform.position += Vector3.down * delta;
             rb.MovePosition(new Vector2(transform.position.x + (randomPushVer / 2), transform.position.y - walkSpeed + (randomPushHor / 2)));
         }
+    }
+
+    private void DrunkReset()
+    {
+        randomPushVer = 0f;
+        randomPushHor = 0f;
+        standingRandomPushHor = 0f;
+        standingRandomPushVer = 0f;
+        rb.velocity = new Vector2(0f,0f);
     }
 
     private void DrunkAutoMove()

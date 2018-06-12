@@ -8,19 +8,19 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private Boolean facingRight;
     private float delta;
+    private float randomPushVer;
+    private float randomPushHor;
+    private float standingRandomPushVer;
+    private float standingRandomPushHor;
+    private int nextUpdate = 1;
 
-    public float randomPushVer;
-    public float randomPushHor;
-
-    public float standingRandomPushVer;
-    public float standingRandomPushHor;
-
-    public int nextUpdate = 1;
+    public Boolean drunk;
 
     public float walkSpeed;
 
     void Start()
     {
+        drunk = false;
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
     private void Move()
     {
         delta = Time.deltaTime;
-        if (Time.time >= nextUpdate)
+        if (Time.time >= nextUpdate && drunk)
         {
             DrunkAutoMove();
             nextUpdate = Mathf.FloorToInt(Time.time) + 1;
@@ -80,5 +80,14 @@ public class Player : MonoBehaviour
         standingRandomPushHor = UnityEngine.Random.Range(-5f, 5f);
         standingRandomPushVer = UnityEngine.Random.Range(-5f, 5f);
         rb.AddForce(new Vector2(standingRandomPushVer, standingRandomPushHor));
+    }
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Alcohol")
+        {
+            Destroy(col.gameObject);
+            drunk = true;
+        }
     }
 }

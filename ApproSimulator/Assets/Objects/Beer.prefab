@@ -9,45 +9,45 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1445648842721018}
+  m_RootGameObject: {fileID: 1180559195278398}
   m_IsPrefabParent: 1
---- !u!1 &1445648842721018
+--- !u!1 &1180559195278398
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4783843148079936}
-  - component: {fileID: 212333369885567290}
-  - component: {fileID: 61373137624411270}
-  - component: {fileID: 114895990405616532}
+  - component: {fileID: 4540882451624138}
+  - component: {fileID: 212023298255298896}
+  - component: {fileID: 61754560601545950}
+  - component: {fileID: 114959396962755272}
   m_Layer: 0
   m_Name: Beer
-  m_TagString: Untagged
+  m_TagString: Alcohol
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4783843148079936
+--- !u!4 &4540882451624138
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1445648842721018}
+  m_GameObject: {fileID: 1180559195278398}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.0041211843, y: 0.7407046, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &61373137624411270
+--- !u!61 &61754560601545950
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1445648842721018}
+  m_GameObject: {fileID: 1180559195278398}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -67,23 +67,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.2, y: 0.2}
   m_EdgeRadius: 0
---- !u!114 &114895990405616532
+--- !u!114 &114959396962755272
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1445648842721018}
+  m_GameObject: {fileID: 1180559195278398}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c252e40843fb91047bc4939a6177604a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!212 &212333369885567290
+--- !u!212 &212023298255298896
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1445648842721018}
+  m_GameObject: {fileID: 1180559195278398}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0

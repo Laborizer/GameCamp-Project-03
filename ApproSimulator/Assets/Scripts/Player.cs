@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
                 facingRight = true;
             }
             //transform.position += Vector3.right * delta;
-            rb.MovePosition(new Vector2(transform.position.x + walkSpeed + (randomPushVer/2),transform.position.y + (randomPushHor/2)));
+            rb.MovePosition(new Vector2(transform.position.x + walkSpeed + (randomPushVer/2),transform.position.y + (randomPushHor/2) * delta));
         }
 
         if (Input.GetKey(KeyCode.A))
@@ -60,19 +60,19 @@ public class Player : MonoBehaviour
                 facingRight = false;
             }
             //transform.position -= Vector3.right * delta;
-            rb.MovePosition(new Vector2(transform.position.x - walkSpeed + (randomPushVer / 2), transform.position.y + (randomPushHor / 2)));
+            rb.MovePosition(new Vector2(transform.position.x - walkSpeed + (randomPushVer / 2), transform.position.y + (randomPushHor / 2) * delta));
         }
 
         if (Input.GetKey(KeyCode.W))
         {
             //transform.position += Vector3.up * delta;
-            rb.MovePosition(new Vector2(transform.position.x + (randomPushVer / 2), transform.position.y + walkSpeed + (randomPushHor / 2)));
+            rb.MovePosition(new Vector2(transform.position.x + (randomPushVer / 2), transform.position.y + walkSpeed + (randomPushHor / 2) * delta));
         }
 
         if (Input.GetKey(KeyCode.S))
         {
             //transform.position += Vector3.down * delta;
-            rb.MovePosition(new Vector2(transform.position.x + (randomPushVer / 2), transform.position.y - walkSpeed + (randomPushHor / 2)));
+            rb.MovePosition(new Vector2(transform.position.x + (randomPushVer / 2), transform.position.y - walkSpeed + (randomPushHor / 2) * delta));
         }
     }
 

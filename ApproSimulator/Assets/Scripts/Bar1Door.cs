@@ -5,11 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class Bar1Door : MonoBehaviour {
 
-    bool canEnter;
+    public bool canEnter;
 
 	// Use this for initialization
 	void Start () {
-        canEnter = false;
+
 	}
 	
 	// Update is called once per frame
@@ -18,14 +18,20 @@ public class Bar1Door : MonoBehaviour {
         {
             SceneManager.LoadScene("Bar1");
         }
-
-        canEnter = false;
 	}
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D obj)
     {
-        if (collision.gameObject.tag == "Player") {
+        if (obj.tag == "Player") {
             canEnter = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D obj)
+    {
+        if (obj.tag == "Player")
+        {
+            canEnter = false;
         }
     }
 }

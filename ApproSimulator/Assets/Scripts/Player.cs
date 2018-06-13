@@ -12,10 +12,12 @@ public class Player : MonoBehaviour
     public float randomPushHor;
     public float standingRandomPushVer;
     public float standingRandomPushHor;
-    private int nextUpdate = 1;
+    public int nextUpdate = 1;
+
+    public float drunkLevelStand;
+    public float drunkLevelWalk;
 
     public Boolean drunk;
-
     public float walkSpeed;
 
     void Start()
@@ -49,7 +51,7 @@ public class Player : MonoBehaviour
                 facingRight = true;
             }
             //transform.position += Vector3.right * delta;
-            rb.MovePosition(new Vector2(transform.position.x + walkSpeed + (randomPushVer/2),transform.position.y + (randomPushHor/2) * delta));
+            rb.MovePosition(new Vector2(transform.position.x + walkSpeed + (randomPushVer/2),transform.position.y + (randomPushHor/2)));
         }
 
         if (Input.GetKey(KeyCode.A))
@@ -60,19 +62,19 @@ public class Player : MonoBehaviour
                 facingRight = false;
             }
             //transform.position -= Vector3.right * delta;
-            rb.MovePosition(new Vector2(transform.position.x - walkSpeed + (randomPushVer / 2), transform.position.y + (randomPushHor / 2) * delta));
+            rb.MovePosition(new Vector2(transform.position.x - walkSpeed + (randomPushVer / 2), transform.position.y + (randomPushHor / 2)));
         }
 
         if (Input.GetKey(KeyCode.W))
         {
             //transform.position += Vector3.up * delta;
-            rb.MovePosition(new Vector2(transform.position.x + (randomPushVer / 2), transform.position.y + walkSpeed + (randomPushHor / 2) * delta));
+            rb.MovePosition(new Vector2(transform.position.x + (randomPushVer / 2), transform.position.y + walkSpeed + (randomPushHor / 2)));
         }
 
         if (Input.GetKey(KeyCode.S))
         {
             //transform.position += Vector3.down * delta;
-            rb.MovePosition(new Vector2(transform.position.x + (randomPushVer / 2), transform.position.y - walkSpeed + (randomPushHor / 2) * delta));
+            rb.MovePosition(new Vector2(transform.position.x + (randomPushVer / 2), transform.position.y - walkSpeed + (randomPushHor / 2)));
         }
     }
 
@@ -87,10 +89,10 @@ public class Player : MonoBehaviour
 
     private void DrunkAutoMove()
     {
-        randomPushVer = UnityEngine.Random.Range(-0.01f, 0.01f);
-        randomPushHor = UnityEngine.Random.Range(-0.01f, 0.01f);
-        standingRandomPushHor = UnityEngine.Random.Range(-5f, 5f);
-        standingRandomPushVer = UnityEngine.Random.Range(-5f, 5f);
+        randomPushVer = UnityEngine.Random.Range(-drunkLevelWalk, drunkLevelWalk);
+        randomPushHor = UnityEngine.Random.Range(-drunkLevelWalk, drunkLevelWalk);
+        standingRandomPushHor = UnityEngine.Random.Range(-drunkLevelStand, drunkLevelStand);
+        standingRandomPushVer = UnityEngine.Random.Range(-drunkLevelStand, drunkLevelStand);
         rb.AddForce(new Vector2(standingRandomPushVer, standingRandomPushHor));
     }
 
@@ -98,6 +100,19 @@ public class Player : MonoBehaviour
     {
         if (col.gameObject.tag == "Alcohol")
         {
+            if (drunkLevelStand <= 3f)
+            {
+                drunkLevelStand += 1f;
+            }
+
+            if (walkSpeed >= 0.005f)
+            {
+                walkSpeed -= 0.001f;
+            }
+            if (drunkLevelWalk <= 0.01f)
+            {
+                drunkLevelWalk += 0.001f;
+            }
             Destroy(col.gameObject);
             drunk = true;
         }

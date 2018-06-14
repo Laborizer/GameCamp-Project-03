@@ -13,22 +13,50 @@ public class Player : MonoBehaviour
     public float standingRandomPushVer;
     public float standingRandomPushHor;
     public int nextUpdate = 1;
-
     public float drunkLevelStand;
     public float drunkLevelWalk;
-
-    public Boolean drunk;
+    public Boolean drunk = false;
     public float walkSpeed;
 
     void Start()
     {
-        drunk = false;
         rb = GetComponent<Rigidbody2D>();
-    }
+        drunk = GlobalControl.Instance.drunk;
+        if (drunk)
+        {
+            facingRight = GlobalControl.Instance.facingRight;
+            randomPushVer = GlobalControl.Instance.randomPushVer;
+            randomPushHor = GlobalControl.Instance.randomPushHor;
+            standingRandomPushVer = GlobalControl.Instance.standingRandomPushVer;
+            standingRandomPushHor = GlobalControl.Instance.standingRandomPushHor;
+            nextUpdate = GlobalControl.Instance.nextUpdate;
+            drunkLevelStand = GlobalControl.Instance.drunkLevelStand;
+            drunkLevelWalk = GlobalControl.Instance.drunkLevelWalk;
+            walkSpeed = GlobalControl.Instance.walkSpeed;
+        }
+}
 
     void FixedUpdate()
     {
         Move();
+        SaveData();
+    }
+
+    private void SaveData()
+    {
+        if (Input.GetKey(KeyCode.E))
+        {
+            GlobalControl.Instance.drunk = this.drunk;
+            GlobalControl.Instance.drunkLevelStand = this.drunkLevelStand;
+            GlobalControl.Instance.drunkLevelWalk = this.drunkLevelWalk;
+            GlobalControl.Instance.facingRight = this.facingRight;
+            GlobalControl.Instance.nextUpdate = this.nextUpdate;
+            GlobalControl.Instance.randomPushHor = this.randomPushHor;
+            GlobalControl.Instance.randomPushVer = this.randomPushVer;
+            GlobalControl.Instance.walkSpeed = this.walkSpeed;
+            GlobalControl.Instance.standingRandomPushVer = this.standingRandomPushVer;
+            GlobalControl.Instance.standingRandomPushHor = this.standingRandomPushHor;
+        }
     }
 
     private void Move()

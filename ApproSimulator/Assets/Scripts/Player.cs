@@ -2,12 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Boolean facingRight;
-    private float delta;
     public float randomPushVer;
     public float randomPushHor;
     public float standingRandomPushVer;
@@ -33,7 +33,6 @@ public class Player : MonoBehaviour
 
     private void Move()
     {
-        delta = Time.deltaTime;
         if (Time.time >= nextUpdate && drunk)
         {
             DrunkAutoMove();

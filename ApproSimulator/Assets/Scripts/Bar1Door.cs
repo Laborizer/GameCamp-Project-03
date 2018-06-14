@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Bar1Door : MonoBehaviour {
 
     public bool canEnter;
+    public string door;
 
 	// Use this for initialization
 	void Start () {
@@ -16,7 +17,7 @@ public class Bar1Door : MonoBehaviour {
 	void Update () {
         if(canEnter && Input.GetKeyDown(KeyCode.E))
         {
-            SceneManager.LoadScene("Bar1");
+            SceneManager.LoadScene(door);
         }
 	}
 
@@ -24,6 +25,7 @@ public class Bar1Door : MonoBehaviour {
     {
         if (obj.tag == "Player") {
             canEnter = true;
+            door = transform.name.ToString();
         }
     }
 
@@ -31,6 +33,7 @@ public class Bar1Door : MonoBehaviour {
     {
         if (obj.tag == "Player")
         {
+            door = "";
             canEnter = false;
         }
     }

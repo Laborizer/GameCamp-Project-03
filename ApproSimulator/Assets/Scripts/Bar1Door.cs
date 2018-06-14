@@ -17,6 +17,10 @@ public class Bar1Door : MonoBehaviour {
 	void Update () {
         if(canEnter && Input.GetKeyDown(KeyCode.E))
         {
+            if (door != "Game")
+            {
+                GlobalControl.Instance.previousDoor = door;
+            }
             SceneManager.LoadScene(door);
         }
 	}

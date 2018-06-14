@@ -17,9 +17,11 @@ public class Player : MonoBehaviour
     public float drunkLevelWalk;
     public Boolean drunk = false;
     public float walkSpeed;
+    public string previousDoor;
 
     void Start()
     {
+        previousDoor = "";
         rb = GetComponent<Rigidbody2D>();
         drunk = GlobalControl.Instance.drunk;
         if (drunk)
@@ -33,8 +35,18 @@ public class Player : MonoBehaviour
             drunkLevelStand = GlobalControl.Instance.drunkLevelStand;
             drunkLevelWalk = GlobalControl.Instance.drunkLevelWalk;
             walkSpeed = GlobalControl.Instance.walkSpeed;
+            getDoorLocation();
         }
-}
+    }
+
+    private void getDoorLocation()
+    {
+        var doorLoc = GameObject.Find("Bar1");
+        if (doorLoc)
+        {
+            transform.position = doorLoc.transform.position;
+        }
+    }
 
     void FixedUpdate()
     {

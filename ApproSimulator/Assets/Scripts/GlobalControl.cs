@@ -16,6 +16,8 @@ public class GlobalControl : MonoBehaviour {
     public bool drunk;
     public float walkSpeed;
 
+    public string previousDoor;
+
     void Awake()
     {
         if (Instance == null)

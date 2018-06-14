@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
         previousDoor = "";
         rb = GetComponent<Rigidbody2D>();
         drunk = GlobalControl.Instance.drunk;
+        previousDoor = GlobalControl.Instance.previousDoor;
         if (drunk)
         {
             facingRight = GlobalControl.Instance.facingRight;
@@ -35,13 +36,16 @@ public class Player : MonoBehaviour
             drunkLevelStand = GlobalControl.Instance.drunkLevelStand;
             drunkLevelWalk = GlobalControl.Instance.drunkLevelWalk;
             walkSpeed = GlobalControl.Instance.walkSpeed;
-            getDoorLocation();
+        }
+        if (!String.IsNullOrEmpty(previousDoor))
+        {
+            getDoorLocation(GlobalControl.Instance.previousDoor);
         }
     }
 
-    private void getDoorLocation()
+    private void getDoorLocation(String door)
     {
-        var doorLoc = GameObject.Find("Bar1");
+        var doorLoc = GameObject.Find(door);
         if (doorLoc)
         {
             transform.position = doorLoc.transform.position;

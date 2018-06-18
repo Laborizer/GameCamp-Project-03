@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class EnemyNPC : MonoBehaviour
 {
 
     GameObject enemy;
     GameObject player;
+    GameObject door;
 
     public bool canGrapple;
 
@@ -13,6 +15,7 @@ public class EnemyNPC : MonoBehaviour
     {
         enemy = GameObject.Find("EnemyNPC");
         player = GameObject.Find("Player");
+        door = GameObject.Find("Game");
 
         player.GetComponent<Player>().transform.parent = null;
         canGrapple = false;
@@ -22,11 +25,11 @@ public class EnemyNPC : MonoBehaviour
     {
         if(!canGrapple)
         {
-            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, (Time.deltaTime / 2));
+            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, (Time.deltaTime));
         }
         else
         {
-            transform.position = Vector2.MoveTowards(transform.position, GameObject.Find("Game").transform.position, (Time.deltaTime /2));
+            transform.position = Vector2.MoveTowards(transform.position, door.transform.position, (Time.deltaTime));
         }
         
         if(canGrapple)
@@ -43,12 +46,19 @@ public class EnemyNPC : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D obj)
     {
-        canGrapple = true;
+        if (obj.gameObject.tag == "Player")
+        {
+            canGrapple = true;
+        }
+
+        if (obj.gameObject.tag == "Door" && canGrapple)
+        {
+            SceneManager.LoadScene("Game");
+        }
     }
 
     private void OnCollisionExit2D(Collision2D obj)
     {
 
     }
-
 }

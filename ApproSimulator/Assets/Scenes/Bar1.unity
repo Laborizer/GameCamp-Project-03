@@ -179,7 +179,7 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 475435239}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -192,18 +192,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &475435242
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 475435239}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65962eed6aff2224b92565f209c8c897, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canGrapple: 0
 --- !u!4 &475435244 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4200267944005470, guid: 0387e3b887d8c2044a0055f03069ad78,
@@ -661,6 +649,26 @@ Prefab:
     - target: {fileID: 4200267944005470, guid: 0387e3b887d8c2044a0055f03069ad78, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 61360394212618678, guid: 0387e3b887d8c2044a0055f03069ad78,
+        type: 2}
+      propertyPath: m_Offset.y
+      value: -0.0005708933
+      objectReference: {fileID: 0}
+    - target: {fileID: 61360394212618678, guid: 0387e3b887d8c2044a0055f03069ad78,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 0.17145629
+      objectReference: {fileID: 0}
+    - target: {fileID: 61360394212618678, guid: 0387e3b887d8c2044a0055f03069ad78,
+        type: 2}
+      propertyPath: m_Offset.x
+      value: -0.00085631385
+      objectReference: {fileID: 0}
+    - target: {fileID: 61360394212618678, guid: 0387e3b887d8c2044a0055f03069ad78,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 0.17316893
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0387e3b887d8c2044a0055f03069ad78, type: 2}

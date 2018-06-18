@@ -15,6 +15,7 @@ public class GlobalControl : MonoBehaviour {
     public float drunkLevelWalk;
     public bool drunk;
     public float walkSpeed;
+    public float peeEmergency;
 
     public string previousDoor;
 

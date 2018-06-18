@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
 {
     public bool isGrabbed;
     public bool onDoor;
+    public float peeEmergency;
 
     private Rigidbody2D rb;
     private Boolean facingRight;
@@ -26,6 +27,7 @@ public class Player : MonoBehaviour
     {
         isGrabbed = false;
 
+        peeEmergency = GlobalControl.Instance.peeEmergency;
         previousDoor = "";
         rb = GetComponent<Rigidbody2D>();
         drunk = GlobalControl.Instance.drunk;
@@ -41,6 +43,7 @@ public class Player : MonoBehaviour
             drunkLevelStand = GlobalControl.Instance.drunkLevelStand;
             drunkLevelWalk = GlobalControl.Instance.drunkLevelWalk;
             walkSpeed = GlobalControl.Instance.walkSpeed;
+
         }
         if (!String.IsNullOrEmpty(previousDoor))
         {
@@ -77,11 +80,14 @@ public class Player : MonoBehaviour
             GlobalControl.Instance.walkSpeed = this.walkSpeed;
             GlobalControl.Instance.standingRandomPushVer = this.standingRandomPushVer;
             GlobalControl.Instance.standingRandomPushHor = this.standingRandomPushHor;
+            GlobalControl.Instance.peeEmergency = this.peeEmergency;
         }
     }
 
     private void Move()
     {
+        peeEmergency += 0.1f / 1600f;
+
         if (Time.time >= nextUpdate && drunk && !isGrabbed)
         {
             DrunkAutoMove();
@@ -148,6 +154,8 @@ public class Player : MonoBehaviour
     {
         if (col.gameObject.tag == "Alcohol")
         {
+            peeEmergency += 0.1f;
+
             if (drunkLevelStand <= 3f)
             {
                 drunkLevelStand += 1f;

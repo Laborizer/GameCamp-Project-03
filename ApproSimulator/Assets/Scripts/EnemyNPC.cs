@@ -10,6 +10,7 @@ public class EnemyNPC : MonoBehaviour
     GameObject door;
 
     public bool canGrapple;
+    public string debug;
 
     void Start()
     {
@@ -42,6 +43,7 @@ public class EnemyNPC : MonoBehaviour
     {
         player.GetComponent<Player>().isGrabbed = true;
         player.GetComponent<Player>().transform.parent = transform;
+        door.GetComponent<Bar1Door>().isGrapped = true;
     }
 
     private void OnCollisionEnter2D(Collision2D obj)
@@ -49,11 +51,6 @@ public class EnemyNPC : MonoBehaviour
         if (obj.gameObject.tag == "Player")
         {
             canGrapple = true;
-        }
-
-        if (obj.gameObject.tag == "Door" && canGrapple)
-        {
-            SceneManager.LoadScene("Game");
         }
     }
 

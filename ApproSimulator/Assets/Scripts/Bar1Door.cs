@@ -7,10 +7,11 @@ public class Bar1Door : MonoBehaviour {
 
     public bool canEnter;
     public string door;
+    public bool isGrapped;
 
 	// Use this for initialization
 	void Start () {
-
+        isGrapped = false;
 	}
 	
 	// Update is called once per frame
@@ -22,6 +23,11 @@ public class Bar1Door : MonoBehaviour {
                 GlobalControl.Instance.previousDoor = door;
             }
             SceneManager.LoadScene(door);
+        }
+        if (canEnter && isGrapped)
+        {
+            isGrapped = false;
+            SceneManager.LoadScene("Game");
         }
 	}
 

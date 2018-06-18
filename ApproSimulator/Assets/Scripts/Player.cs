@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
     public bool isGrabbed;
+    public bool onDoor;
 
     private Rigidbody2D rb;
     private Boolean facingRight;

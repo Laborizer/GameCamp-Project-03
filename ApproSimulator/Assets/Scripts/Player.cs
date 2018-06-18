@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    public bool isGrabbed;
+
     private Rigidbody2D rb;
     private Boolean facingRight;
     public float randomPushVer;
@@ -21,6 +23,8 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        isGrabbed = false;
+
         previousDoor = "";
         rb = GetComponent<Rigidbody2D>();
         drunk = GlobalControl.Instance.drunk;
@@ -77,7 +81,7 @@ public class Player : MonoBehaviour
 
     private void Move()
     {
-        if (Time.time >= nextUpdate && drunk)
+        if (Time.time >= nextUpdate && drunk && !isGrabbed)
         {
             DrunkAutoMove();
             nextUpdate = Mathf.FloorToInt(Time.time) + 1;
@@ -86,7 +90,7 @@ public class Player : MonoBehaviour
             DrunkReset();
         }
 
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D) && !isGrabbed)
         {
             if (!facingRight)
             {
@@ -97,7 +101,7 @@ public class Player : MonoBehaviour
             rb.MovePosition(new Vector2(transform.position.x + walkSpeed + (randomPushVer/2),transform.position.y + (randomPushHor/2)));
         }
 
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A) && !isGrabbed)
         {
             if (facingRight)
             {
@@ -108,13 +112,13 @@ public class Player : MonoBehaviour
             rb.MovePosition(new Vector2(transform.position.x - walkSpeed + (randomPushVer / 2), transform.position.y + (randomPushHor / 2)));
         }
 
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W) && !isGrabbed)
         {
             //transform.position += Vector3.up * delta;
             rb.MovePosition(new Vector2(transform.position.x + (randomPushVer / 2), transform.position.y + walkSpeed + (randomPushHor / 2)));
         }
 
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.S) && !isGrabbed)
         {
             //transform.position += Vector3.down * delta;
             rb.MovePosition(new Vector2(transform.position.x + (randomPushVer / 2), transform.position.y - walkSpeed + (randomPushHor / 2)));

@@ -16,8 +16,8 @@ public class GlobalControl : MonoBehaviour {
     public bool drunk;
     public float walkSpeed;
     public float peeEmergency;
-
     public string previousDoor;
+    public int beerCount;
 
     void Awake()
     {

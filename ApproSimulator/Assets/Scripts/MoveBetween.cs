@@ -12,7 +12,6 @@ public class MoveBetween : MonoBehaviour {
 
     private Vector2 startPos;
     private Vector2 endPos;
-    private float currentLerpTime = 0;
     
     void Start()
     {

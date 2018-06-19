@@ -3,12 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     public bool isGrabbed;
     public bool onDoor;
     public float peeEmergency;
+    public Text beerCountText;
+    public int beerCount = 0;
 
     private Rigidbody2D rb;
     private Boolean facingRight;
@@ -26,6 +29,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         isGrabbed = false;
+        beerCountText.text = "Beers: " + beerCount.ToString() + "/20";
 
         peeEmergency = GlobalControl.Instance.peeEmergency;
         previousDoor = "";
@@ -43,7 +47,8 @@ public class Player : MonoBehaviour
             drunkLevelStand = GlobalControl.Instance.drunkLevelStand;
             drunkLevelWalk = GlobalControl.Instance.drunkLevelWalk;
             walkSpeed = GlobalControl.Instance.walkSpeed;
-
+            beerCountText.text = "Beers: " + GlobalControl.Instance.beerCount.ToString() + "/20";
+            beerCount = GlobalControl.Instance.beerCount;
         }
         if (!String.IsNullOrEmpty(previousDoor))
         {
@@ -63,25 +68,22 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         Move();
-        SaveData();
     }
 
-    private void SaveData()
+    public void ForceSave()
     {
-        if (Input.GetKey(KeyCode.E))
-        {
-            GlobalControl.Instance.drunk = this.drunk;
-            GlobalControl.Instance.drunkLevelStand = this.drunkLevelStand;
-            GlobalControl.Instance.drunkLevelWalk = this.drunkLevelWalk;
-            GlobalControl.Instance.facingRight = this.facingRight;
-            GlobalControl.Instance.nextUpdate = this.nextUpdate;
-            GlobalControl.Instance.randomPushHor = this.randomPushHor;
-            GlobalControl.Instance.randomPushVer = this.randomPushVer;
-            GlobalControl.Instance.walkSpeed = this.walkSpeed;
-            GlobalControl.Instance.standingRandomPushVer = this.standingRandomPushVer;
-            GlobalControl.Instance.standingRandomPushHor = this.standingRandomPushHor;
-            GlobalControl.Instance.peeEmergency = this.peeEmergency;
-        }
+        GlobalControl.Instance.drunk = this.drunk;
+        GlobalControl.Instance.drunkLevelStand = this.drunkLevelStand;
+        GlobalControl.Instance.drunkLevelWalk = this.drunkLevelWalk;
+        GlobalControl.Instance.facingRight = this.facingRight;
+        GlobalControl.Instance.nextUpdate = this.nextUpdate;
+        GlobalControl.Instance.randomPushHor = this.randomPushHor;
+        GlobalControl.Instance.randomPushVer = this.randomPushVer;
+        GlobalControl.Instance.walkSpeed = this.walkSpeed;
+        GlobalControl.Instance.standingRandomPushVer = this.standingRandomPushVer;
+        GlobalControl.Instance.standingRandomPushHor = this.standingRandomPushHor;
+        GlobalControl.Instance.peeEmergency = this.peeEmergency;
+        GlobalControl.Instance.beerCount = this.beerCount;
     }
 
     private void Move()
@@ -169,6 +171,8 @@ public class Player : MonoBehaviour
             {
                 drunkLevelWalk += 0.001f;
             }
+            beerCount++;
+            beerCountText.text = "Beers: " + beerCount.ToString() + "/20";
             Destroy(col.gameObject);
             drunk = true;
         }

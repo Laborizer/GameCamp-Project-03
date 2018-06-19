@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 public class EnemyNPC : MonoBehaviour
 {
 
-    GameObject enemy;
     GameObject player;
     GameObject door;
 
@@ -14,7 +13,6 @@ public class EnemyNPC : MonoBehaviour
 
     void Start()
     {
-        enemy = GameObject.Find("EnemyNPC");
         player = GameObject.Find("Player");
         door = GameObject.Find("Game");
 

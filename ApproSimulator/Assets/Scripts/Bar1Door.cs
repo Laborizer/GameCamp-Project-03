@@ -8,9 +8,11 @@ public class Bar1Door : MonoBehaviour {
     public bool canEnter;
     public string door;
     public bool isGrapped;
+    GameObject player;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
+        player = GameObject.Find("Player");
         isGrapped = false;
 	}
 	
@@ -22,10 +24,12 @@ public class Bar1Door : MonoBehaviour {
             {
                 GlobalControl.Instance.previousDoor = door;
             }
+            player.GetComponent<Player>().ForceSave();
             SceneManager.LoadScene(door);
         }
         if (canEnter && isGrapped)
         {
+            player.GetComponent<Player>().ForceSave();
             isGrapped = false;
             SceneManager.LoadScene("Game");
         }

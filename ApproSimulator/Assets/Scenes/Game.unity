@@ -213,6 +213,11 @@ Prefab:
       propertyPath: beerCountText
       value: 
       objectReference: {fileID: 1948538657}
+    - target: {fileID: 114523096194490232, guid: 0387e3b887d8c2044a0055f03069ad78,
+        type: 2}
+      propertyPath: gameOverPanel
+      value: 
+      objectReference: {fileID: 371751742}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0387e3b887d8c2044a0055f03069ad78, type: 2}
   m_IsPrefabParent: 0
@@ -533,7 +538,6 @@ GameObject:
   - component: {fileID: 371751743}
   - component: {fileID: 371751745}
   - component: {fileID: 371751744}
-  - component: {fileID: 371751746}
   m_Layer: 5
   m_Name: Game Over Panel
   m_TagString: Untagged
@@ -593,19 +597,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 371751742}
---- !u!114 &371751746
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 371751742}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ee7a8f72c9f2094fb8b085796dba504, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameOverPanel: {fileID: 371751742}
-  gameOverText: {fileID: 1078922076}
 --- !u!1001 &491929655
 Prefab:
   m_ObjectHideFlags: 0
@@ -1111,7 +1102,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!224 &1138576297
 RectTransform:

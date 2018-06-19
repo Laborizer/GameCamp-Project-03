@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    public GameObject gameOverPanel;
+
     public bool canMove;
     public bool onDoor;
     public float peeEmergency;
@@ -28,6 +30,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        gameOverPanel.SetActive(false);
         canMove = true;
         beerCountText.text = "Beers: " + beerCount.ToString() + "/20";
 
@@ -68,6 +71,16 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         Move();
+        checkGameOver();
+    }
+
+    private void checkGameOver()
+    {
+        if(peeEmergency >= 1f)
+        {
+            canMove = false;
+            gameOverPanel.SetActive(true);
+        }
     }
 
     public void ForceSave()

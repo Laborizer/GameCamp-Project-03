@@ -39,7 +39,7 @@ public class EnemyNPC : MonoBehaviour
 
     void grapple()
     {
-        player.GetComponent<Player>().isGrabbed = true;
+        player.GetComponent<Player>().canMove = false;
         player.GetComponent<Player>().transform.parent = transform;
         door.GetComponent<Bar1Door>().isGrapped = true;
     }

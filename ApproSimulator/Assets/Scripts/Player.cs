@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    public bool isGrabbed;
+    public bool canMove;
     public bool onDoor;
     public float peeEmergency;
     public Text beerCountText;
@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        isGrabbed = false;
+        canMove = true;
         beerCountText.text = "Beers: " + beerCount.ToString() + "/20";
 
         peeEmergency = GlobalControl.Instance.peeEmergency;
@@ -90,7 +90,7 @@ public class Player : MonoBehaviour
     {
         peeEmergency += 0.1f / 1600f;
 
-        if (Time.time >= nextUpdate && drunk && !isGrabbed)
+        if (Time.time >= nextUpdate && drunk && canMove)
         {
             DrunkAutoMove();
             nextUpdate = Mathf.FloorToInt(Time.time) + 1;
@@ -99,7 +99,7 @@ public class Player : MonoBehaviour
             DrunkReset();
         }
 
-        if (Input.GetKey(KeyCode.D) && !isGrabbed)
+        if (Input.GetKey(KeyCode.D) && canMove)
         {
             if (!facingRight)
             {
@@ -110,7 +110,7 @@ public class Player : MonoBehaviour
             rb.MovePosition(new Vector2(transform.position.x + walkSpeed + (randomPushVer/2),transform.position.y + (randomPushHor/2)));
         }
 
-        if (Input.GetKey(KeyCode.A) && !isGrabbed)
+        if (Input.GetKey(KeyCode.A) && canMove)
         {
             if (facingRight)
             {
@@ -121,13 +121,13 @@ public class Player : MonoBehaviour
             rb.MovePosition(new Vector2(transform.position.x - walkSpeed + (randomPushVer / 2), transform.position.y + (randomPushHor / 2)));
         }
 
-        if (Input.GetKey(KeyCode.W) && !isGrabbed)
+        if (Input.GetKey(KeyCode.W) && canMove)
         {
             //transform.position += Vector3.up * delta;
             rb.MovePosition(new Vector2(transform.position.x + (randomPushVer / 2), transform.position.y + walkSpeed + (randomPushHor / 2)));
         }
 
-        if (Input.GetKey(KeyCode.S) && !isGrabbed)
+        if (Input.GetKey(KeyCode.S) && canMove)
         {
             //transform.position += Vector3.down * delta;
             rb.MovePosition(new Vector2(transform.position.x + (randomPushVer / 2), transform.position.y - walkSpeed + (randomPushHor / 2)));

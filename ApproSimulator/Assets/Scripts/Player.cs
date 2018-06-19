@@ -8,6 +8,8 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     public GameObject gameOverPanel;
+    public GameObject winPanel;
+    public GameObject menu;
 
     public bool canMove;
     public bool onDoor;
@@ -31,6 +33,8 @@ public class Player : MonoBehaviour
     void Start()
     {
         gameOverPanel.SetActive(false);
+        winPanel.SetActive(false);
+        menu.SetActive(false);
         canMove = true;
         beerCountText.text = "Beers: " + beerCount.ToString() + "/20";
 
@@ -72,7 +76,18 @@ public class Player : MonoBehaviour
     {
         Move();
         checkGameOver();
+        checkWin();
         Piss();
+    }
+
+    private void checkWin()
+    {
+        if (beerCount == 20)
+        {
+            canMove = false;
+            winPanel.SetActive(true);
+            menu.SetActive(true);
+        }
     }
 
     private void Piss()
@@ -102,6 +117,7 @@ public class Player : MonoBehaviour
         {
             canMove = false;
             gameOverPanel.SetActive(true);
+            menu.SetActive(true);
         }
     }
 

@@ -72,6 +72,28 @@ public class Player : MonoBehaviour
     {
         Move();
         checkGameOver();
+        Piss();
+    }
+
+    private void Piss()
+    {
+        if (Input.GetKey(KeyCode.Space) && peeEmergency >= 0)
+        {
+            peeEmergency -= 0.003f;
+            if (drunkLevelStand >= 0f)
+            {
+                drunkLevelStand -= 0.001f;
+            }
+
+            if (walkSpeed <= 0.021f)
+            {
+                walkSpeed += 0.00001f;
+            }
+            if (drunkLevelWalk >= 0)
+            {
+                drunkLevelWalk -= 0.001f;
+            }
+        }
     }
 
     private void checkGameOver()
@@ -169,7 +191,7 @@ public class Player : MonoBehaviour
     {
         if (col.gameObject.tag == "Alcohol")
         {
-            peeEmergency += 0.1f;
+            peeEmergency += 0.19f;
 
             if (drunkLevelStand <= 3f)
             {

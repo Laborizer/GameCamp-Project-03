@@ -20,4 +20,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Bar1.unity
     guid: 803bcadf64567724d80c7f9779bd4b46
+  - enabled: 1
+    path: Assets/Scenes/Bar2.unity
+    guid: eb6f66c3b71a7d7439fbb7bc677e9640
+  - enabled: 1
+    path: Assets/Scenes/Bar3.unity
+    guid: 625d40c547a577949bda038294b6982d
+  - enabled: 1
+    path: Assets/Scenes/Bar4.unity
+    guid: de76ce9b6c8ede64dbf1f65844c6b2b7
+  - enabled: 1
+    path: Assets/Scenes/Bar5.unity
+    guid: 16639b6c07884474abd4329056a452bf
   m_configObjects: {}

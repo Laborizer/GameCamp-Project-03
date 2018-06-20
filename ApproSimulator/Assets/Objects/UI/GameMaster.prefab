@@ -61,3 +61,6 @@ MonoBehaviour:
   drunkLevelWalk: 0
   drunk: 0
   walkSpeed: 0
+  peeEmergency: 0
+  previousDoor: 
+  beerCount: 0

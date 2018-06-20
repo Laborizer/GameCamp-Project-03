@@ -439,7 +439,8 @@ Prefab:
       propertyPath: deathScream
       value: 
       objectReference: {fileID: 8300000, guid: b4edf1d8dde5811478d7060514114a4c, type: 3}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 82595323411018170, guid: 0387e3b887d8c2044a0055f03069ad78, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 0387e3b887d8c2044a0055f03069ad78, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &143400854

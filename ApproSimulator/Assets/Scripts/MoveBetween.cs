@@ -32,11 +32,15 @@ public class MoveBetween : MonoBehaviour {
 
         if (lookRight)
         {
-            transform.LookAt(startPos);
+            Vector3 targetPos = pointA.transform.position;
+            Vector3 targetPosFlattened = new Vector3(targetPos.x, targetPos.y, 0);
+            transform.LookAt(targetPosFlattened);
         }
         else
         {
-            transform.LookAt(endPos);
+            Vector3 targetPos = pointB.transform.position;
+            Vector3 targetPosFlattened = new Vector3(targetPos.x, targetPos.y, 0);
+            transform.LookAt(targetPosFlattened);
         }
         moveObject.transform.position = Vector2.Lerp(startPos,endPos, Mathf.PingPong(Time.time * Speed, 1.0f));
     }

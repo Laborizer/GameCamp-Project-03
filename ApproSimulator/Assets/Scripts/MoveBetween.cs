@@ -22,6 +22,7 @@ public class MoveBetween : MonoBehaviour {
     }
     void Update()
     {
+        transform.Rotate(Vector3.forward, 200f * Time.deltaTime);
         moveObject.transform.position = Vector2.Lerp(startPos,endPos, Mathf.PingPong(Time.time * Speed, 1.0f));
     }
 }

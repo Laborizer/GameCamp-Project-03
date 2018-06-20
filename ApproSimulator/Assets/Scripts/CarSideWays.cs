@@ -19,14 +19,7 @@ public class CarSideWays : MonoBehaviour {
     }
     void Update()
     {
-        if (transform.position == pointA.transform.position)
-        {
-            transform.Rotate(new Vector3(0, 180, 0));
-        }
-        if (transform.position == pointB.transform.position)
-        {
-            transform.Rotate(new Vector3(0, -180, 0));
-        }
+        transform.Rotate(Vector3.forward, 200f * Time.deltaTime);
         moveObject.transform.position = Vector2.Lerp(startPos, endPos, Mathf.PingPong(Time.time * Speed, 1.0f));
     }
 }

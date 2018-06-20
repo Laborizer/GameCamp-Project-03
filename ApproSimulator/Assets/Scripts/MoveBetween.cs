@@ -12,6 +12,8 @@ public class MoveBetween : MonoBehaviour {
 
     private Vector2 startPos;
     private Vector2 endPos;
+
+    private bool lookRight;
     
     void Start()
     {
@@ -20,6 +22,22 @@ public class MoveBetween : MonoBehaviour {
     }
     void Update()
     {
+        if (transform.position == pointA.transform.position)
+        {
+            lookRight = true;
+        } else if(transform.position == pointB.transform.position)
+        {
+            lookRight = false;
+        }
+
+        if (lookRight)
+        {
+            transform.LookAt(startPos);
+        }
+        else
+        {
+            transform.LookAt(endPos);
+        }
         moveObject.transform.position = Vector2.Lerp(startPos,endPos, Mathf.PingPong(Time.time * Speed, 1.0f));
     }
 }

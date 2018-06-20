@@ -30,8 +30,13 @@ public class Player : MonoBehaviour
     public float walkSpeed;
     public string previousDoor;
 
+    public AudioClip impact;
+    AudioSource audioSource;
+
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+
         gameOverPanel.SetActive(false);
         winPanel.SetActive(false);
         menu.SetActive(false);
@@ -226,6 +231,14 @@ public class Player : MonoBehaviour
             beerCountText.text = "Beers: " + beerCount.ToString() + "/20";
             Destroy(col.gameObject);
             drunk = true;
+        }
+
+        if (col.gameObject.tag == "Car")
+        {
+            audioSource.PlayOneShot(impact, 0.7F);
+            canMove = false;
+            gameOverPanel.SetActive(true);
+            menu.SetActive(true);
         }
     }
 }

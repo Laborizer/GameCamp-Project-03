@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     public GameObject winPanel;
     public GameObject menu;
 
+    bool deathSoundPlayed;
+
     public bool canMove;
     public bool onDoor;
     public float peeEmergency;
@@ -40,6 +42,7 @@ public class Player : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
 
+        deathSoundPlayed = false;
         gameOverPanel.SetActive(false);
         winPanel.SetActive(false);
         menu.SetActive(false);
@@ -126,7 +129,11 @@ public class Player : MonoBehaviour
             canMove = false;
             gameOverPanel.SetActive(true);
             menu.SetActive(true);
-            audioSource.PlayOneShot(deathScream, 1F);
+            if(!deathSoundPlayed)
+            {
+                deathSoundPlayed = true;
+                audioSource.PlayOneShot(deathScream, 1F);
+            }
         }
     }
 

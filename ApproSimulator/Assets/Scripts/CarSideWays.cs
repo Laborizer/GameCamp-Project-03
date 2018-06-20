@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class CarSideWays : MonoBehaviour {
 
-    public AudioSource audiosource;
-
     public GameObject moveObject;
     public GameObject pointA;
     public GameObject pointB;
@@ -16,8 +14,6 @@ public class CarSideWays : MonoBehaviour {
 
     void Start()
     {
-        audiosource = GetComponent<AudioSource>();
-        audiosource.Play();
 
         startPos = pointA.transform.position;
         endPos = pointB.transform.position;

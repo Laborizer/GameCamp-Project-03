@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+
     public GameObject gameOverPanel;
     public GameObject winPanel;
     public GameObject menu;
@@ -30,6 +31,8 @@ public class Player : MonoBehaviour
     public float walkSpeed;
     public string previousDoor;
 
+    public AudioClip gulp;
+    public AudioClip deathScream;
     public AudioClip impact;
     AudioSource audioSource;
 
@@ -123,6 +126,7 @@ public class Player : MonoBehaviour
             canMove = false;
             gameOverPanel.SetActive(true);
             menu.SetActive(true);
+            audioSource.PlayOneShot(deathScream, 1F);
         }
     }
 
@@ -212,6 +216,7 @@ public class Player : MonoBehaviour
     {
         if (col.gameObject.tag == "Alcohol")
         {
+            audioSource.PlayOneShot(gulp, 5F);
             peeEmergency += 0.19f;
 
             if (drunkLevelStand <= 3f)
@@ -235,7 +240,8 @@ public class Player : MonoBehaviour
 
         if (col.gameObject.tag == "Car")
         {
-            audioSource.PlayOneShot(impact, 0.7F);
+            audioSource.PlayOneShot(impact, 7F);
+            audioSource.PlayOneShot(deathScream, 1F);
             canMove = false;
             gameOverPanel.SetActive(true);
             menu.SetActive(true);
